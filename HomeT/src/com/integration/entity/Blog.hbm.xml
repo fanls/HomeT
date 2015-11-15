@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+ <class name="com.integration.entity.Blog" table="BLOG">
+  <id name="bid" type="java.lang.Integer">
+   <column name="BID" precision="22" scale="0"/>
+   <generator class="identity"/>
+  </id>
+  <property name="uid" type="java.lang.Integer">
+ 	 <column name="UID" length="100" not-null="false">
+         <comment>标签</comment>
+     </column>
+  </property>
+  <property name="title" type="java.lang.String">
+ 	 <column name="TITLE" length="100" not-null="false">
+         <comment>标签</comment>
+     </column>
+  </property>
+  <property name="createDate" type="java.lang.String">
+ 	 <column name="CREATEDATE" length="100" not-null="false">
+         <comment>标签</comment>
+     </column>
+  </property>
+  <property name="article" type="java.lang.String">
+ 	 <column name="ARTICLE" length="100" not-null="false">
+         <comment>标签</comment>
+     </column>
+  </property>
+  <property name="commentNum" type="java.lang.Integer">
+ 	 <column name="COMMENTNUM" length="100" not-null="false">
+         <comment>标签</comment>
+     </column>
+  </property>
+  <property name="label" type="java.lang.String">
+ 	 <column name="LABEL" length="100" not-null="false">
+         <comment>标签</comment>
+     </column>
+  </property>
+    <property name="blog" type="java.lang.String">
+ 	 <column name="BLOG" not-null="false">
+         <comment>标签</comment>
+     </column>
+  </property>
+ </class>
+</hibernate-mapping>

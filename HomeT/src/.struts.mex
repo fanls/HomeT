@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Struts2Diagram version="2.0">
+  <package name="struts2" location="276,46" size="770,350">
+    <action name="login" location="568,60" size="150,62">
+      <result name="success">
+        <resourceEdge source="success" routing="0" target="query.jsp" />
+      </result>
+      <result name="failer">
+        <resourceEdge source="failer" routing="0" target="error.jsp" />
+      </result>
+    </action>
+    <action name="user" location="568,175" size="150,41">
+      <result name="success">
+        <resourceEdge source="success" routing="0" target="success.jsp" />
+      </result>
+    </action>
+    <action name="userquery" location="323,175" size="150,41">
+      <result name="success">
+        <resourceEdge source="success" routing="0" target="query.jsp" />
+      </result>
+    </action>
+    <action name="userdelete" location="78,175" size="150,41">
+      <result name="success">
+        <resourceEdge source="success" routing="0" target="success.jsp" />
+      </result>
+    </action>
+    <action name="userupdate" location="78,270" size="150,62">
+      <result name="success">
+        <resourceEdge source="success" routing="0" target="success.jsp" />
+      </result>
+      <result name="input">
+        <resourceEdge source="input" routing="0" target="update.jsp" />
+      </result>
+    </action>
+  </package>
+  <webResource name="success.jsp" path="/success.jsp" location="10,275" size="150,55" />
+  <webResource name="error.jsp" path="/error.jsp" location="115,65" size="150,55" />
+  <webResource name="query.jsp" path="/query.jsp" location="605,450" size="150,55" />
+  <webResource name="update.jsp" path="/update.jsp" location="360,450" size="150,55" />
+</Struts2Diagram>
+
