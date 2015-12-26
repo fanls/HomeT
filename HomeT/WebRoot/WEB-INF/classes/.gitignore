@@ -1,5 +1,7 @@
 /.struts.mex
-/META-INF/
+/applicationContext-blog.xml
+/applicationContext-user.xml
 /applicationContext.xml
 /com/
+/connection.xml
 /struts.xml

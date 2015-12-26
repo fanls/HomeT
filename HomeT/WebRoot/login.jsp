@@ -73,7 +73,7 @@ function toshow(){
 		<center>
 		<div id="insert" onclick="toshow()"><span id="tokown"></span></div>
 		<div id="box">
-			<form action="${pageContext.request.contextPath}/user/login" method="post">
+			<form action="${pageContext.request.contextPath}/login" method="post">
 				<label><input type="radio" name="usertype" value=0 /> 用户</label>
 				<label><input type="radio" name="usertype" value=1 /> 管理员</label><br>
 				<label>用户名：<input type="text" name="username"/></label><br>
