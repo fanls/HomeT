@@ -1,8 +1,8 @@
-package com.integration.dao.impl;
+package com.homet.dao.impl;
 import java.util.List;
 
-import com.integration.dao.UserDAO;
-import com.integration.entity.User;
+import com.homet.dao.UserDAO;
+import com.homet.entity.User;
 
 import org.hibernate.Query;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;

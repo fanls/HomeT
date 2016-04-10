@@ -1,4 +1,4 @@
-package com.integration.web;
+package com.homet.web;
 
 import java.io.IOException;
 
@@ -28,11 +28,11 @@ public class LogonFilter implements Filter{
 			FilterChain filterChain) throws IOException, ServletException {
 		HttpServletRequest request = (HttpServletRequest) req;
 		HttpServletResponse response = ((HttpServletResponse) res);
-		if(request.getSession().getAttribute("username")!=null){
+		if(request.getSession().getAttribute("uid")!=null){
 			// TODO Auto-generated method stub
 			filterChain.doFilter(req, res);
 		}else{
-			response.sendRedirect("../login.jsp");
+			response.sendRedirect("../view/index.jsp");
 		}
 	}
 

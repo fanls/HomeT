@@ -1,5 +1,6 @@
 /.struts.mex
-/applicationContext-blog.xml
+/applicationContext-comment.xml
+/applicationContext-note.xml
 /applicationContext-user.xml
 /applicationContext.xml
 /com/

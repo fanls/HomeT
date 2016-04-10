@@ -1,14 +1,13 @@
-package com.integration.action;
+package com.homet.action;
 
 import java.util.List;
 
 import org.apache.struts2.ServletActionContext;
 
-import com.integration.entity.User;
-import com.integration.service.UserService;
-import com.opensymphony.xwork2.ActionSupport;
+import com.homet.entity.User;
+import com.homet.service.UserService;
 @SuppressWarnings("serial")
-public class UserMgrAction extends ActionSupport {
+public class UserMgrAction extends BaseAction {
 	private UserService userService;
 	public void setUserService(UserService userService) {
 		this.userService = userService;
@@ -23,7 +22,7 @@ public class UserMgrAction extends ActionSupport {
 		return SUCCESS;
 	}
 	public String deleteUser(){
-		int id = user.getId();
+		int id = user.getUid();
 		userService.deleteUser(id);
 		return SUCCESS;
 	}
@@ -33,7 +32,7 @@ public class UserMgrAction extends ActionSupport {
 		return SUCCESS;
 	}
 	public String updateUser(){
-		if(userService.findUserById(user.getId())!=null)
+		if(userService.findUserById(user.getUid())!=null)
 		{	
 			setUser(user);
 			userService.updateUser(user);

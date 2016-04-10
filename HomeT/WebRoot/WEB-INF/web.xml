@@ -4,15 +4,19 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" 
 	version="3.0">
   <display-name></display-name>
+  <context-param>  
+            <param-name>charset</param-name>  
+            <param-value>UTF-8</param-value>  
+    </context-param>  
   <!-- 默认首页 -->
   <welcome-file-list>
-    <welcome-file>login.jsp</welcome-file>
+    <welcome-file>/view/index.jsp</welcome-file>
   </welcome-file-list>
   <!-- 登录状态拦截器 -->
   <filter>
     <filter-name>LogonFilter</filter-name>
     <filter-class>
-  		com.integration.web.LogonFilter
+  		com.homet.web.LogonFilter
   	</filter-class>
   </filter>
   <filter-mapping>

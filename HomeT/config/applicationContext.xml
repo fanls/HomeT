@@ -7,8 +7,9 @@
     <!-- 配置SessionFactory -->
     <import resource="classpath:connection.xml"/>
 	<import resource="classpath:applicationContext-user.xml"/>
-	<import resource="classpath:applicationContext-blog.xml"/>	 
-	 <bean id="loginAction" class="com.integration.action.LoginAction">
+	<import resource="classpath:applicationContext-note.xml"/>	
+	<import resource="classpath:applicationContext-comment.xml"/>	  
+	 <bean id="loginAction" class="com.homet.action.LoginAction">
 	 	<property name="userService" ref="userService"></property>
 	 	</bean>	 
 </beans>

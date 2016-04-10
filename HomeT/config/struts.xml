@@ -9,9 +9,13 @@
     <constant name="struts.custom.i18n.resources" value="globalMessages" />
 	<constant name="struts.url.includeParams" value="none" />
 	<constant name="struts.ui.theme" value="xhtml"></constant>
-	<package name="login" namespace="/" extends="struts-default">
+	<package name="login" namespace="/view" extends="struts-default">
 	<action name="login" class="loginAction" method="login">
-			<result name="success" type="redirect">/user/userquery.action</result>
+			<result name="success">/view/show_note.jsp</result>
+			<result name="failer">/error.jsp</result>
+	</action>
+	<action name="registry" class="loginAction" method="registry">
+			<result name="success" type="redirect">/view/login</result>
 			<result name="failer">/error.jsp</result>
 	</action>
 	</package>
@@ -29,10 +33,19 @@
 			<result name="success" type="redirect">/user/userquery.action</result>
 			<result name="input">/update.jsp</result>
 		</action>
-		<action name="*Blog" method="{1}" class="blogMgrAction">
-			<result name="success" type="redirect">/user/queryBlog</result>
+		<action name="*Note" method="{1}" class="noteMgrAction">
+			<result name="success">/view/show_note.jsp</result>
+			<result name="show">/view/show_note.jsp</result>
 			<result name="query">/show/blog_query.jsp</result>
 			<result name="showblog">/show/blog.jsp</result>
+			<result name="detail">/view/show_detail.jsp</result>
+		</action>
+		<action name="*Comment" method="{1}" class="commentMgrAction">
+			<result name="success">/view/show_note.jsp</result>
+			<result name="show">/view/show_note.jsp</result>
+			<result name="query">/show/blog_query.jsp</result>
+			<result name="showblog">/show/blog.jsp</result>
+			<result name="detail">/view/show_detail.jsp</result>
 		</action>
 	</package>
 </struts>    

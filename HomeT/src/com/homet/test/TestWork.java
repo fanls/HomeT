@@ -1,6 +1,6 @@
-package com.integration.test;
+package com.homet.test;
 
-import com.integration.dao.UserDAO;
+import com.homet.dao.UserDAO;
 
 public class TestWork {
 
