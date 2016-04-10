@@ -16,8 +16,8 @@
         <property name="password" type="java.lang.String">
             <column name="password" />
         </property>
-        <property name="type" type="java.lang.Integer">
-            <column name="type" />
+        <property name="group" type="java.lang.Integer">
+            <column name="group" />
         </property>
         <property name="level" type="java.lang.Integer">
             <column name="level" />
