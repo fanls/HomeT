@@ -21,7 +21,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div class="menu">
 				<ul>
 					<li><a href="${pageContext.request.contextPath}/view/show_note.jsp"title="">个人中心</a></li>
-					<li><a href=""title="">好友动态</a></li>
+					<li><a href="${pageContext.request.contextPath}/view/group_note.jsp"title="">好友动态</a></li>
 					<li><a href="${pageContext.request.contextPath}/view/write_note.jsp"title="">写日记</a></li>
 					<li><a href=""title="">关于我们</a></li>
 				</ul>

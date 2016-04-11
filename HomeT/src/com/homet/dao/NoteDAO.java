@@ -16,4 +16,5 @@ public interface NoteDAO {
 	public void updateNote(Note note);
 	public void deleteNote(int Nid);
 	public List<Note> findByDate(String createDate,String uid,int page);
+	public List<Note> findAllByPage(int page);
 }

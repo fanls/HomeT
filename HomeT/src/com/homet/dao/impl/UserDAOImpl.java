@@ -22,9 +22,10 @@ public class UserDAOImpl extends HibernateDaoSupport implements UserDAO{
 	public void update(User user){
 			this.getHibernateTemplate().update(user);
 	}
+	@SuppressWarnings("unchecked")
 	public User findById(int id) {
-			User user = (User) this.getHibernateTemplate().get(User.class, id);
-			return user;
+		User user = (User) this.getHibernateTemplate().get(User.class, id);
+		return user;
 	}	
 	@SuppressWarnings("unchecked")
 	public List<User> findAll() {
@@ -35,8 +36,14 @@ public class UserDAOImpl extends HibernateDaoSupport implements UserDAO{
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<User> findByName(String name) {
-		// TODO Auto-generated method stub
 		String hsql = "form user where name ="+name;
+		List<User> list = this.getHibernateTemplate().find(hsql);
+		return list;
+	}
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<User> findByGroup(int group) {
+		String hsql = "from User u where u.groupId ="+group;
 		List<User> list = this.getHibernateTemplate().find(hsql);
 		return list;
 	}

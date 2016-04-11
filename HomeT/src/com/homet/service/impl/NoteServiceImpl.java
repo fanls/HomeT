@@ -1,16 +1,21 @@
 package com.homet.service.impl;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.struts2.ServletActionContext;
 
 import com.homet.dao.NoteDAO;
+import com.homet.dao.UserDAO;
 import com.homet.entity.Note;
+import com.homet.entity.User;
 import com.homet.service.NoteService;
 
 public class NoteServiceImpl implements NoteService {
 	private NoteDAO noteDAO;
+	private UserDAO userDAO;
 	@Override
 	public void addNote(Note note) {
 		// TODO Auto-generated method stub
@@ -34,14 +39,6 @@ public class NoteServiceImpl implements NoteService {
 		// TODO Auto-generated method stub
 		List<Note> notes =noteDAO.findAllNote();
 		return notes;
-	}
-
-	public NoteDAO getNoteDAO() {
-		return noteDAO;
-	}
-
-	public void setNoteDAO(NoteDAO noteDAO) {
-		this.noteDAO = noteDAO;
 	}
 
 	@Override
@@ -99,5 +96,39 @@ public class NoteServiceImpl implements NoteService {
 			notes = noteDAO.findByDate(date,uid,page);
 		}
 		return notes;
+	}
+
+	@Override
+	public List<Note> findGroupNote(String uid, int page) {
+		List<Note> notes =null;
+		int group = 0 ;
+		if(uid!=null){
+			group =userDAO.findById(Integer.valueOf(uid)).getGroupId();
+		}
+		List<User> users = userDAO.findByGroup(group);
+		Map<Integer,String> uidToNameMap = new HashMap<Integer, String>();
+		for(User u:users){
+			uidToNameMap.put(u.getUid(), u.getName());
+		}
+		notes = noteDAO.findAllByPage(page);
+		for(Note n: notes){
+			n.setLabel(uidToNameMap.get(n.getUid()));//用label属性保存用户名
+		}
+		return notes;
+	}
+//=============================getter AND setter=======================================
+	public UserDAO getUserDAO() {
+		return userDAO;
+	}
+
+	public void setUserDAO(UserDAO userDAO) {
+		this.userDAO = userDAO;
+	}
+	public NoteDAO getNoteDAO() {
+		return noteDAO;
+	}
+
+	public void setNoteDAO(NoteDAO noteDAO) {
+		this.noteDAO = noteDAO;
 	}
 }

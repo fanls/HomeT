@@ -14,6 +14,7 @@
 	<!-- Service层 -->
 	<bean id="noteService" class="com.homet.service.impl.NoteServiceImpl">
 	 	<property name="noteDAO" ref="noteDAO"></property>
+	 	<property name="userDAO" ref="userDAO"></property>
 	</bean> 	 
 	<!-- Action层 -->
 	 <bean id="noteMgrAction" class="com.homet.action.NoteMgrAction">	 

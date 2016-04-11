@@ -40,6 +40,22 @@ public class NoteMgrAction extends BaseAction {
 		noteService.deleteNote(id); 
 		return SUCCESS;
 	}
+	public String queryGroup(){
+		Object uid =this.getRequest().getSession().getAttribute("uid");
+		String page = this.getRequest().getParameter("page");
+		List<Note> notes =noteService.findGroupNote(uid.toString(), Integer.valueOf(page));
+		JSONObject jsonObject = new JSONObject();
+		jsonObject.put("data", JSONArray.fromObject(notes));
+		ServletActionContext.getResponse().setCharacterEncoding("UTF-8");
+		ServletActionContext.getResponse().setContentType("text/html;charset=UTF-8;");
+		try {
+			ServletActionContext.getResponse().getWriter().print(jsonObject.toString());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
 	public String query() throws IOException{
 		Object uid =this.getRequest().getSession().getAttribute("uid");
 		String msg =this.getRequest().getParameter("param");

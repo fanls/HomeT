@@ -61,7 +61,7 @@
 								 <input type="password" name="password"/><br>
 								 <span></span>
 								 <label>群&nbsp&nbsp组：</label>
-								 <input type="text" name="usertype"/>
+								 <input type="text" name="group"/>
 								 <span></span>
 								 <label class="checkbox">
 								 	<input type="checkbox"/>认可网站

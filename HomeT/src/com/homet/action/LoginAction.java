@@ -33,7 +33,7 @@ public class LoginAction extends BaseAction {
 		User u=new User();
 		u.setName(username);
 		u.setPassword(password);
-		u.setGroup(group);
+		u.setGroupId(group);
 		userService.saveUser(u);
 		return SUCCESS;
 	}

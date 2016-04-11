@@ -107,4 +107,17 @@ public class NoteDAOImpl extends HibernateDaoSupport implements NoteDAO{
 		return notes;
 	}
 
+	@Override
+	public List<Note> findAllByPage(int page) {
+		// TODO Auto-generated method stub
+		Session session = this.getSession();
+		String hql ="SELECT n FROM Note n ORDER BY n.createDate DESC";
+		Query query = session.createQuery(hql);
+		query.setFirstResult((page-1)*3);
+		query.setMaxResults(3);
+		
+		List<Note> notes = query.list();;
+		return notes;
+	}
+
 }

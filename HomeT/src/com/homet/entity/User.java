@@ -13,7 +13,7 @@ public class User implements java.io.Serializable {
 	private Integer uid;
 	private String name;
 	private String password;
-	private Integer group;
+	private Integer groupId;
 	private Integer level;
 	private Integer status;
 	private Timestamp createDate;
@@ -27,12 +27,12 @@ public class User implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public User(String name, String password, Integer group, Integer level,
+	public User(String name, String password, Integer groupId, Integer level,
 			Integer status, Timestamp createDate, Timestamp lastLogonDate,
 			Integer phone) {
 		this.name = name;
 		this.password = password;
-		this.group = group;
+		this.groupId = groupId;
 		this.level = level;
 		this.status = status;
 		this.createDate = createDate;
@@ -66,12 +66,12 @@ public class User implements java.io.Serializable {
 		this.password = password;
 	}
 
-	public Integer getGroup() {
-		return this.group;
+	public Integer getGroupId() {
+		return this.groupId;
 	}
 
-	public void setGroup(Integer group) {
-		this.group = group;
+	public void setGroupId(Integer groupId) {
+		this.groupId = groupId;
 	}
 
 	public Integer getLevel() {

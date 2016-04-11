@@ -10,4 +10,5 @@ public interface UserDAO {
 	 User findById(int id);
 	 List<User> findByName(String name);
 	 List<User> findAll();
+	 List<User> findByGroup(int group);
 }

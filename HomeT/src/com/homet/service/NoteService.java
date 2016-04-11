@@ -16,4 +16,5 @@ public interface NoteService {
 	public List<Note> findByLabel(String label,int uid);
 	public List<Note> queryNote(String uid ,String label,int page);
 	public List<Note> queryByDate(String uid, String createDate,int page);
+	public List<Note> findGroupNote(String uid,int page);
 }

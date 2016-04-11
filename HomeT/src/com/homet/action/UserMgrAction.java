@@ -17,7 +17,7 @@ public class UserMgrAction extends BaseAction {
 		User u=new User();
 		u.setName(user.getName());
 		u.setPassword(user.getPassword());
-		u.setGroup(user.getGroup());
+		u.setGroupId(user.getGroupId());
 		userService.saveUser(u);
 		return SUCCESS;
 	}
