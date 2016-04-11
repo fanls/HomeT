@@ -16,7 +16,7 @@ public class CommentDAOImpl extends HibernateDaoSupport implements ICommentDAO{
 	public List<Comment> findByNid(int nid,int page) {
 		// TODO Auto-generated method stub
 		Session session = this.getSession();
-		String hql ="FROM Comment c WHERE c.nid='"+nid+"'";
+		String hql ="FROM Comment c WHERE c.nid='"+nid+"'ORDER BY c.createDate DESC";
 		Query query = session.createQuery(hql);
 		query.setFirstResult((page-1)*3);
 		query.setMaxResults(3);
@@ -40,7 +40,7 @@ public class CommentDAOImpl extends HibernateDaoSupport implements ICommentDAO{
 	@Override
 	public List<Comment> findByUid(int uid) {
 		// TODO Auto-generated method stub
-		String hql ="FROM Comment c WHERE c.uid='"+uid+"'";
+		String hql ="FROM Comment c WHERE c.uid='"+uid+"'ORDER BY c.createDate DESC";
 		List<Comment> comments = (List<Comment>) this.getHibernateTemplate().find(hql);
 		return comments;
 	}

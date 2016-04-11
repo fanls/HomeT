@@ -51,7 +51,7 @@ public class NoteDAOImpl extends HibernateDaoSupport implements NoteDAO{
 	@Override
 	public List<Note> findByNid(int nid) {
 		// TODO Auto-generated method stub
-		String hql ="FROM Note n WHERE n.nid='"+nid+"'";
+		String hql ="FROM Note n WHERE n.nid='"+nid+"'ORDER BY n.createDate DESC";
 		List<Note> note = (List<Note>) this.getHibernateTemplate().find(hql);
 		return note;
 	}
@@ -74,7 +74,7 @@ public class NoteDAOImpl extends HibernateDaoSupport implements NoteDAO{
 	public List<Note> findByUid(String uid,int page) {
 		// TODO Auto-generated method stub
 		Session session = this.getSession();
-		String hql ="SELECT n FROM Note n WHERE UID='"+uid+"'";
+		String hql ="SELECT n FROM Note n WHERE UID='"+uid+"'ORDER BY n.createDate DESC";
 		Query query = session.createQuery(hql);
 		query.setFirstResult((page-1)*3);
 		query.setMaxResults(3);
@@ -86,7 +86,7 @@ public class NoteDAOImpl extends HibernateDaoSupport implements NoteDAO{
 	@Override
 	public List<Note> findByLabel(String label,String uid,int page){
 		Session session = this.getSession();
-		String hql = "SELECT n FROM Note n WHERE n.label ='"+label+"'AND n.uid='"+uid+"'ORDER BY n.createDate";
+		String hql = "SELECT n FROM Note n WHERE n.label ='"+label+"'AND n.uid='"+uid+"'ORDER BY n.createDate DESC";
 		Query query = session.createQuery(hql);
 		query.setFirstResult((page-1)*3);
 		query.setMaxResults(3);
@@ -98,7 +98,7 @@ public class NoteDAOImpl extends HibernateDaoSupport implements NoteDAO{
 	public List<Note> findByDate(String createDate,String uid,int page) {
 		// TODO Auto-generated method stub
 		Session session = this.getSession();
-		String hql ="SELECT n FROM Note n WHERE n.uid ='"+uid+"'AND n.createDate LIKE'%"+createDate+"%'";
+		String hql ="SELECT n FROM Note n WHERE n.uid ='"+uid+"'AND n.createDate LIKE'%"+createDate+"%'ORDER BY n.createDate DESC";
 		Query query = session.createQuery(hql);
 		query.setFirstResult((page-1)*3);
 		query.setMaxResults(3);
