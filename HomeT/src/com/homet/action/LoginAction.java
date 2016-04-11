@@ -12,7 +12,7 @@ import com.homet.service.UserService;
 public class LoginAction extends BaseAction {
 	String username;
 	String password;
-	int usertype;
+	int group;
 	private UserService userService;
 
 	public String login(){
@@ -33,15 +33,15 @@ public class LoginAction extends BaseAction {
 		User u=new User();
 		u.setName(username);
 		u.setPassword(password);
-		u.setType(usertype);
+		u.setGroup(group);
 		userService.saveUser(u);
 		return SUCCESS;
 	}
-	public int getUsertype() {
-		return usertype;
+	public int getGroup() {
+		return group;
 	}
-	public void setUsertype(int usertype) {
-		this.usertype = usertype;
+	public void setGroup(int usertype) {
+		this.group= usertype;
 	}
 	public String getUsername() {
 		return username;
