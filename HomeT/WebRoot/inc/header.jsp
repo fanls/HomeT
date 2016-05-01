@@ -12,7 +12,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
  <body>
   	<div class="hero-unit">
 		<h1>
-			毕设日记
+			<a href="${pageContext.request.contextPath}/user/showUserNote?uid=${user.uid}">${user.name}的${user.password}日记</a>
 		</h1>
 		<p>
 			这是一个可视化布局模板, 你可以点击模板里的文字进行修改, 也可以通过点击弹出的编辑框进行富文本修改. 拖动区块能实现排序.
@@ -20,9 +20,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<div class="clear"><hr size="1" /></div>
 			<div class="menu">
 				<ul>
-					<li><a href="${pageContext.request.contextPath}/view/show_note.jsp"title="">个人中心</a></li>
-					<li><a href="${pageContext.request.contextPath}/view/group_note.jsp"title="">好友动态</a></li>
-					<li><a href="${pageContext.request.contextPath}/view/write_note.jsp"title="">写日记</a></li>
+					<li><a href="${pageContext.request.contextPath}/user/showOwnNote"title="">个人中心</a></li>
+					<li><a href="${pageContext.request.contextPath}/user/showGroupNote"title="">好友动态</a></li>
+					<li><a href="${pageContext.request.contextPath}/user/writeNote"title="">写日记</a></li>
 					<li><a href=""title="">关于我们</a></li>
 				</ul>
 			</div>

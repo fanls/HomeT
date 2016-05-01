@@ -27,6 +27,7 @@ public class LoginAction extends BaseAction {
 				  return "success";
 			 }
 		}
+		addActionMessage(getText("error.message.not.exist"));
 		return "failer";
 	}
 	public String registry(){
@@ -35,6 +36,7 @@ public class LoginAction extends BaseAction {
 		u.setPassword(password);
 		u.setGroupId(group);
 		userService.saveUser(u);
+		ServletActionContext.getRequest().getSession().setAttribute("uid",u.getUid() );
 		return SUCCESS;
 	}
 	public int getGroup() {

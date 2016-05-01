@@ -12,13 +12,10 @@ li {display: inline-block;
 	font-size: 20px;
 }
 @media screen and (min-width:992px){
-.container-fluid{margin:5% 10% 5% 10%;background-color:#FFFFFF}
+.container-fluid{margin:5% 10% 5% 10%;background-color:#FFFFFF;min-height:500px;}
 }
 @media screen and (max-width:992px){
-.container-fluid{background-color:#FFFFFF}
-}
-.container-fluid{
-	min-height:900px;
+.container-fluid{background-color:#FFFFFF;min-height:100%;}
 }
 .page{
 	text-align:left;

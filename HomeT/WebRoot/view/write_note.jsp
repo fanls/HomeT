@@ -26,8 +26,8 @@
     					<textarea class="form-control" name="note.article" rows="10" cols="60"></textarea><br>
     					<span class="help-block">您可以使用这些HTML标签和属性： < a href="" title="" > < abbr title=""> < acronym title=""> < b> < blockquote cite=""> < cite> < code> < del datetime=""> < em> < i> < q cite=""> < s> < strike> < strong></span>
 					<label contenteditable="true">标签</label><br>
-						<input type="text" name="note.label"><br>
-					<button type="submit" class="btn" contenteditable="true">提交</button>
+						<input type="text" name="note.label"><br><br>
+					<button type="submit" class="btn">提交</button>
 				</fieldset>
 				</div>
 			</form>

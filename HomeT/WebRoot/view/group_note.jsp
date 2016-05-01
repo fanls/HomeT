@@ -22,8 +22,8 @@ function getMore(){
 	page++;
 	loadMain();
 }
-function gotoNote(data){
-	window.location.href="${pageContext.request.contextPath}/user/queryByNidNote?nid="+data;
+function gotoNote(data,uid){
+	window.location.href="${pageContext.request.contextPath}/user/queryByNidNote?nid="+data+"&uid="+uid;
 }
 function loadMain(){
 	var url1 ="${pageContext.request.contextPath}/user/queryGroupNote?param="+param+"&op="+op+"&page="+page;
@@ -44,10 +44,11 @@ function loadMain(){
 				blog = str.data[p].article;
 				title = str.data[p].title;
 				nid = str.data[p].nid;
-				uid = str.data[p].label;
+				name = str.data[p].label;
+				uid = str.data[p].uid;
 				createDate=str.data[p].createDate;
-				var note_box ="<div class='blog_box' onclick='gotoNote("+nid+")'>"
-							 +"<h3><a>"+uid+"</a>_"+title+"</h3>"
+				var note_box ="<div class='blog_box'>"
+							 +"<h3><a href =\"${pageContext.request.contextPath}/user/showUserNote?uid="+uid+"\">"+name+"</a>_<apan onclick='gotoNote("+nid+","+uid+")'>"+title+"</span></h3>"
 				 			 +"<p>"+blog.substring(0,230)+"</p>"
 				 			 +"本文创建于"   +createDate+"</p><hr size='1/'></div>"
 				$(".content").append(note_box);
@@ -58,11 +59,12 @@ function loadMain(){
 		}
 	});
 }
-function loadlabel(){
+function loadUsers(data){
 //获取文章分类
 	var flabel;
 	var fno;
-	var url2 ="${pageContext.request.contextPath}/user/queryLabelNote";
+	var num =0;
+	var url2 ="${pageContext.request.contextPath}/user/userInGroupNote";
 	$.ajax({
 		type:"post",
 		url:url2,
@@ -70,21 +72,37 @@ function loadlabel(){
 			if(status =="success"){
 				var str = eval('('+response+')');
 				//alert(str);
-					for(var p in str){
-						flabel = str[p][0];
-						fno = str[p][1];
-						var html ="<dd><span onclick='setParam(\""+flabel+"\",1)'><a>"+flabel+"("+fno+")</a></span></dd>"
+				if(data != 1){
+					num = str.length;
+				}
+				$(".h").empty();
+				$(".f").empty();
+				$(".h").append("<p>好友列表("+str.length+")</p>")
+				if(num>10){
+					for(var i=0;i<=10;i++ ){
+						name = str[i].name;
+						uid = str[i].uid;
+						var html ="<dd><a href =\"${pageContext.request.contextPath}/user/showUserNote?uid="+uid+"\">"+name+"</a></dd>"
 						$(".f").append(html)
 					}
+					$(".f").append("<span onclick='loadUsers(\"1\")'>显示更多>></span>");
+				}else{
+					for(var p in str){
+						name = str[p].name;
+						uid = str[p].uid;
+						var html ="<dd><a href =\"${pageContext.request.contextPath}/user/showUserNote?uid="+uid+"\">"+name+"</a></dd>"
+						$(".f").append(html)
+					}
+				}
 			}
 		}
 	});
 }
-function loadByDate(){
+function loadActor(){
 //获取文章归档
-	var gdate;
+	var author;
 	var gno;
-	var url3 ="${pageContext.request.contextPath}/user/queryDateNote";
+	var url3 ="${pageContext.request.contextPath}/user/getNearlyComment";
 	$.ajax({
 		type:"post",
 		url:url3,
@@ -93,9 +111,13 @@ function loadByDate(){
 				var str = eval('('+response+')');
 				//alert(str);
 					for(var p in str){
-						gdate = str[p][0];
-						gno = str[p][1];
-						var html ="<dd><span onclick='setParam(\""+gdate+"\",2)'><a>"+gdate+"("+gno+")</a></span></dd>"
+						author = str[p].author;
+						createDate = str[p].createDate;
+						data = str[p].data;
+						nid = str[p].nid;
+						uid = str[p].uid;
+//						var html ="<dd><span onclick='setParam(\""+gdate+"\",2)'><a>"+gdate+"("+gno+")</a></span></dd>"
+						var html ="<dd><a onclick='gotoNote(\""+nid+"\",\""+uid+"\")'>"+author+"评论了《"+data+"》</a></dd>";
 						$(".g").append(html)
 					}
 			}
@@ -104,8 +126,8 @@ function loadByDate(){
 }
 $(document).ready(function(){
 	loadMain();
-	loadlabel();
-	loadByDate();
+	loadUsers();
+	loadActor();
 });
 
 </script>
@@ -174,17 +196,18 @@ $(document).ready(function(){
 		<div class="col-xs-12 col-sm-3">
 			<div class="accordion" id="accordion-2558">
 				<div class="accordion-group">
-					<div class="accordion-heading">
-						<p>日记分类</p>
+					<div class="accordion-heading h">
+						
 					</div>
 					<div class="accordion-inner f">
 					</div>
 				</div><br>
 				<div class="accordion-group">
 					<div class="accordion-heading">
-					<p>建档日期</p>
+					<p>最新评论</p>
 					</div>
 					<div class="accordion-inner g">
+					<p></p>
 					</div>
 				</div>
 			</div>

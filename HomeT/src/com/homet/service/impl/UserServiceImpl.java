@@ -13,9 +13,6 @@ public class UserServiceImpl implements UserService {
 	public void saveUser(User user) {
 			userDAO.save(user);
 	}
-	public User getUser(String name) {
-		return userDAO.getUser(name);
-	}
 	public void deleteUser(int id) {
 		if(userDAO.findById(id)!=null)
 			userDAO.delete(id);
@@ -32,14 +29,8 @@ public class UserServiceImpl implements UserService {
 		return userDAO.findAll();
 	}
 	@Override
-	public String findByName(String name) {
-		// TODO Auto-generated method stub
-		List<User> user = new ArrayList<User>();
-		user = userDAO.findByName(name);
-		String psw = user.get(0).getPassword();
-		return psw;
+	public List<User> userInGroup(int group) {
+		return userDAO.findByGroup(group);
 	}
-
-	
 	
 }

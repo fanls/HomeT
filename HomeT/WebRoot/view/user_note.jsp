@@ -11,6 +11,7 @@
 var param="";
 var op= 0;
 var page=1;
+var uid = ${user.uid};
 function setParam(data,no){
 	op = no;
 	param=data;
@@ -22,11 +23,11 @@ function getMore(){
 	page++;
 	loadMain();
 }
-function gotoNote(data){
-	window.location.href="${pageContext.request.contextPath}/user/queryByNidNote?nid="+data;
+function gotoNote(data,uid){
+	window.location.href="${pageContext.request.contextPath}/user/queryByNidNote?nid="+data+"&uid="+uid;
 }
 function loadMain(){
-	var url1 ="${pageContext.request.contextPath}/user/queryNote?param="+param+"&op="+op+"&page="+page;
+	var url1 ="${pageContext.request.contextPath}/user/queryNote?param="+param+"&op="+op+"&page="+page+"&uid="+uid;
 	var blog;
 	var title;
 	var nid;
@@ -43,11 +44,13 @@ function loadMain(){
 			for ( var p in str.data){ // 方法 
 				blog = str.data[p].article;
 				title = str.data[p].title;
+				label = str.data[p].label
 				nid = str.data[p].nid;
+				uid = str.data[p].uid;
 				createDate=str.data[p].createDate;
-				var note_box ="<div class='blog_box' onclick='gotoNote("+nid+")'><h3>"+title+"</h3>"
+				var note_box ="<div class='blog_box'><h3 	onclick='gotoNote("+nid+","+uid+")'>"+title+"</h3>"
 				 			 +"<p>"+blog.substring(0,230)+"</p>"
-				 			 +"本文创建于"   +createDate+"</p><hr size='1/'></div>"
+				 			 +"本文创建于"+createDate+"属于<a onclick='setParam(\""+label+"\",1)'>"+label+"</a></p><hr size='1/'></div>"
 				$(".content").append(note_box);
     		}
 			$(".more").empty();
@@ -60,7 +63,7 @@ function loadlabel(){
 //获取文章分类
 	var flabel;
 	var fno;
-	var url2 ="${pageContext.request.contextPath}/user/queryLabelNote";
+	var url2 ="${pageContext.request.contextPath}/user/queryLabelNote?uid="+uid;
 	$.ajax({
 		type:"post",
 		url:url2,
@@ -82,7 +85,7 @@ function loadByDate(){
 //获取文章归档
 	var gdate;
 	var gno;
-	var url3 ="${pageContext.request.contextPath}/user/queryDateNote";
+	var url3 ="${pageContext.request.contextPath}/user/queryDateNote?uid="+uid;
 	$.ajax({
 		type:"post",
 		url:url3,

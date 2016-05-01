@@ -33,26 +33,11 @@ public class NoteServiceImpl implements NoteService {
 		// TODO Auto-generated method stub
 		noteDAO.updateNote(note);
 	}
-
-	@Override
-	public List<Note> findALLNote() {
-		// TODO Auto-generated method stub
-		List<Note> notes =noteDAO.findAllNote();
-		return notes;
-	}
-
 	@Override
 	public List<Note> findNoteById(int nid) {
 		// TODO Auto-generated method stub
 		List<Note> note= noteDAO.findByNid(nid);
 		return note;
-	}
-
-	@Override
-	public List<Note> findByUid(String uid) {
-		// TODO Auto-generated method stub
-		//List<Note> notes = noteDAO.findByUid(uid);
-		return null;
 	}
 
 	@Override
@@ -101,18 +86,23 @@ public class NoteServiceImpl implements NoteService {
 	@Override
 	public List<Note> findGroupNote(String uid, int page) {
 		List<Note> notes =null;
+		List<Integer> uids =new ArrayList<Integer>();
 		int group = 0 ;
 		if(uid!=null){
 			group =userDAO.findById(Integer.valueOf(uid)).getGroupId();
 		}
 		List<User> users = userDAO.findByGroup(group);
+		for(User u:users){
+			uids.add(u.getUid());
+		}
 		Map<Integer,String> uidToNameMap = new HashMap<Integer, String>();
 		for(User u:users){
 			uidToNameMap.put(u.getUid(), u.getName());
 		}
-		notes = noteDAO.findAllByPage(page);
+		notes = noteDAO.findByGroup(uids,page);
 		for(Note n: notes){
 			n.setLabel(uidToNameMap.get(n.getUid()));//用label属性保存用户名
+			
 		}
 		return notes;
 	}

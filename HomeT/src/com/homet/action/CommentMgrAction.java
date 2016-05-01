@@ -1,5 +1,6 @@
 package com.homet.action;
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -51,6 +52,28 @@ public class CommentMgrAction extends BaseAction {
 			e.printStackTrace();
 		}
 		return null;
+	}
+	public String getNearly(){
+		int uid = (Integer) this.getRequest().getSession().getAttribute("uid");
+		List<Comment> comms = commentService.nearlyCommentInGroup(uid);
+		try {
+			this.printJSON(comms);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	public void deleteByCid(){
+		String cid = this.getRequest().getParameter("cid");
+		String nid = this.getRequest().getParameter("nid");
+		String uid = this.getRequest().getParameter("uid");
+		commentService.deleteByCid(Integer.valueOf(cid));
+		try {
+			this.getResponse().sendRedirect("../user/queryByNidNote?nid="+nid+"&uid="+uid);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	public ICommentService getCommentService() {
 		return commentService;

@@ -15,8 +15,4 @@
 	<bean id="userService" class="com.homet.service.impl.UserServiceImpl">
 	 	<property name="userDAO" ref="userDAO"></property>
 	</bean>
-	<!-- Action层 -->
-	<bean id="userMgrAction" class="com.homet.action.UserMgrAction">	 
-	 	<property name="userService" ref="userService"></property>
-	</bean>
 </beans>

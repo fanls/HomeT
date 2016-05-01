@@ -11,37 +11,28 @@
 	<constant name="struts.ui.theme" value="xhtml"></constant>
 	<package name="login" namespace="/view" extends="struts-default">
 	<action name="login" class="loginAction" method="login">
-			<result name="success">/view/show_note.jsp</result>
-			<result name="failer">/error.jsp</result>
+			<result name="success" type="redirect">/user/showOwnNote</result>
+			<result name="failer">/view/index.jsp</result>
 	</action>
 	<action name="registry" class="loginAction" method="registry">
-			<result name="success" type="redirect">/view/login</result>
-			<result name="failer">/error.jsp</result>
+			<result name="success" type="redirect">/user/showOwnNote</result>
+			<result name="failer">/view/index.jsp</result>
 	</action>
 	</package>
 	<package name="struts2" namespace="/user" extends="struts-default">
-		<action name="useradd" class="userMgrAction" method="addUser">
-		 <result name="success" type="redirect">/user/userquery.action</result>
-		</action>		
-		<action name="userquery" class="userMgrAction" method="queryUser">
-			<result name="success" type="redirect">/user/queryBlog</result>	
-		</action>		
-		<action name="userdelete" class="userMgrAction" method="deleteUser"> 
-			<result name="success" type="redirect">/user/userquery.action</result>
-		</action>		
-		<action name="userupdate" class="userMgrAction" method="updateUser">
-			<result name="success" type="redirect">/user/userquery.action</result>
-			<result name="input">/update.jsp</result>
-		</action>
 		<action name="*Note" method="{1}" class="noteMgrAction">
-			<result name="success">/view/show_note.jsp</result>
+			<result name="success" type="redirect">/user/showOwnNote</result>
 			<result name="show">/view/show_note.jsp</result>
-			<result name="query">/show/blog_query.jsp</result>
-			<result name="showblog">/show/blog.jsp</result>
+			<result name="groupNote">/view/group_note.jsp</result>
+			<result name="userNote">/view/user_note.jsp</result>
+			<result name="ownNote">/view/user_note.jsp</result>
+			<result name="write">/view/write_note.jsp</result>
 			<result name="detail">/view/show_detail.jsp</result>
+			<result name="update">/view/update_note.jsp</result>
+			
 		</action>
 		<action name="*Comment" method="{1}" class="commentMgrAction">
-			<result name="success">/view/show_note.jsp</result>
+			<result name="success">/view/show_detail.jsp</result>
 			<result name="show">/view/show_note.jsp</result>
 			<result name="query">/show/blog_query.jsp</result>
 			<result name="showblog">/show/blog.jsp</result>

@@ -10,12 +10,6 @@ public class UserDAOImpl extends HibernateDaoSupport implements UserDAO{
 	public void save(User user) {
 		this.getHibernateTemplate().save(user);		
 	}
-	public User getUser(String name)
-	{
-		String hsql="from User u where u.name='"+name+"'";
-		User result=(User)((Query) this.getHibernateTemplate().find(hsql)).uniqueResult();
-		return result;
-	}	
 	public void delete(int id) {
 			this.getHibernateTemplate().delete(findById(id));
 	}	
@@ -32,13 +26,6 @@ public class UserDAOImpl extends HibernateDaoSupport implements UserDAO{
 			String queryString = "from User";
 			List<User> list =this.getHibernateTemplate().find(queryString);
 			return list;
-	}
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<User> findByName(String name) {
-		String hsql = "form user where name ="+name;
-		List<User> list = this.getHibernateTemplate().find(hsql);
-		return list;
 	}
 	@SuppressWarnings("unchecked")
 	@Override

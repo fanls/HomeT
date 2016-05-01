@@ -14,6 +14,10 @@ public class Note implements java.io.Serializable {
 	private String createDate;
 	private String article;
 	private String label;
+	
+	//不匹配数据库字段
+	private String next;
+	private String last;
 
 	// Constructors
 
@@ -90,6 +94,22 @@ public class Note implements java.io.Serializable {
 	public Object getNote() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+//不匹配数据库字段
+	public String getNext() {
+		return next;
+	}
+
+	public void setNext(String next) {
+		this.next = next;
+	}
+
+	public String getLast() {
+		return last;
+	}
+
+	public void setLast(String last) {
+		this.last = last;
 	}
 
 }

@@ -10,9 +10,15 @@
 var page = 1;
 $(document).ready(function(){
 	loadComment();
+	$("#"+${uid}).html("更新");
 })
 function getMore(){
 	page++;
+	loadComment();
+}
+function reflash(){
+	page = 1
+	$(".comment").empty();
 	loadComment();
 }
 function loadComment(){
@@ -24,12 +30,14 @@ function loadComment(){
 			if(status =="success"){
 				var data = eval('('+response+')');
 				$.each(data ,function(idx,comm){
-					var showComment ="<b><a>"+comm.author+"</a></b>_评论："+comm.data
-									+"(创建于<a>"+comm.createDate+"</a>)"
+					var showComment ="<b><a href =\"${pageContext.request.contextPath}/user/showUserNote?uid="+comm.uid+"\">"+comm.author+"</a></b>_评论："+comm.data
+									+"(创建于"+comm.createDate+")"
+									+"<a class=\""+comm.uid+"\" onclick=\"reflash()\" href =\"${pageContext.request.contextPath}/user/deleteByCidComment?cid="+comm.cid+"&nid="+comm.nid+"&uid="+comm.uid+"\"></a>"
 									+"<div class=\"clear\"><hr size=\"1\" /></div>"
 					$(".comment").append(showComment);
 					//alert(item.cid);
 				})
+				$("."+${uid}).html("删除");
 				$(".more").empty();
 				$(".more").append("<button class=\"btn\" onclick=\"getMore()\">↓加载跟多</button>");
 			}
@@ -68,7 +76,7 @@ function addComment(){
 	<div class="row-fluid">
 		<div class="form-group">
 			<div class="note-box">
-				<h3><b>标题：${note.title}</b></h3>
+				<h3><b>标题：${note.title}</b>-<a id="${note.uid}" href ="${pageContext.request.contextPath}/user/updateNote?nid=${note.nid}"></a></h3>
 				<div id ="title">${note.article}</div>
 				<br>
 				<p>本文创建于<a>${note.createDate}</a>属于<a>${note.label}</a></p>
